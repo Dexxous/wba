@@ -12,6 +12,17 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --primary-color: #7A9D8C;
+            --text-color: #050706;
+            --card-gradient-start: #ABA8BF;
+            --card-gradient-end: #F5E9F3;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+        
         body {
             background: #FFFFFF;
             font-family: 'Roboto', sans-serif;
@@ -21,331 +32,302 @@
         .container {
             position: relative;
             width: 100%;
-            max-width: 1440px;
+            max-width: 90rem;
             margin: 0 auto;
-            padding-bottom: 50px;
+            padding: 0 1rem 3rem;
         }
         
-        /* Responzivní nastavení pro různé obrazovky */
-        @media (max-width: 767px) {
-            .container {
-                max-width: 390px;
-                min-height: 2569px;
-            }
-            
-            .image-grid {
-                margin: 54px 36px 0;
-            }
-            
-            .grid-image {
-                width: 150px;
-                height: 120px;
-            }
-            
-            .grid-image:nth-child(3) {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .plusy {
-                width: 288px;
-                height: 20px;
-                margin: 40px auto 0;
-                font-size: 28px;
-                line-height: 32px;
-            }
-            
-            .amenities {
-                padding: 0 51px;
-                margin-top: 30px;
-            }
-            
-            .amenity {
-                width: 136px;
-                margin-bottom: 40px;
-            }
-            
-            .info-card,
-            .info-image,
-            .info-text {
-                width: 288px;
-            }
-        }
-        
-        @media (min-width: 768px) and (max-width: 1439px) {
-            .container {
-                max-width: 960px;
-            }
-            
-            .image-grid {
-                margin: 60px auto 0;
-                max-width: 900px;
-            }
-            
-            .grid-image {
-                width: 280px;
-                height: 200px;
-            }
-            
-            .plusy {
-                width: auto;
-                margin: 60px auto 40px;
-                font-size: 32px;
-                line-height: 36px;
-            }
-            
-            .amenities {
-                padding: 0 100px;
-                margin-top: 40px;
-            }
-            
-            .amenity {
-                width: 170px;
-                margin-bottom: 50px;
-            }
-            
-            .info-card,
-            .info-image,
-            .info-text {
-                width: 700px;
-            }
-            
-            .card-image {
-                height: 400px;
-            }
-        }
-        
-        @media (min-width: 1440px) {
-            .container {
-                height: 2203px;
-            }
-            
-            .image-grid {
-                width: 1120px;
-                height: 280px;
-                margin: 76px auto 0;
-                justify-content: space-between;
-            }
-            
-            .grid-image {
-                width: 352px;
-                height: 280px;
-            }
-            
-            .plusy {
-                width: 90px;
-                height: 36px;
-                margin: 120px auto 40px;
-                font-size: 36px;
-                line-height: 36px;
-            }
-            
-            .amenities {
-                width: 937px;
-                margin: 60px auto 0;
-                padding: 0;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-            }
-            
-            .amenity {
-                width: 166px;
-                margin-bottom: 60px;
-                flex: 0 0 calc(25% - 20px);
-            }
-            
-            .info-card {
-                width: 1121px;
-                height: 535px;
-                margin: 100px auto;
-                display: flex;
-            }
-            
-            .card-image {
-                width: 544px;
-                height: 535px;
-            }
-            
-            .card-content {
-                width: 577px;
-                padding: 40px;
-            }
-            
-            .card-text {
-                width: 384px;
-                margin: 30px auto;
-                font-size: 16px;
-                line-height: 28px;
-            }
-            
-            .info-section {
-                display: flex;
-                width: 1121px;
-                margin: 0 auto;
-            }
-            
-            .info-text {
-                width: 352px;
-                font-size: 16px;
-                line-height: 28px;
-                margin-right: 40px;
-            }
-            
-            .info-image {
-                width: 672px;
-                height: 414px;
-            }
-        }
-        
-        /* Společné styly */
+        /* Updated Image Grid Styles */
         .image-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto auto;
+            gap: 10px;
+            margin: 1rem auto;
+            width: 100%;
+            max-width: 70rem;
+            padding: 0 10px;
         }
         
         .grid-image {
-            border-radius: 10px;
-            margin-bottom: 12px;
+            border-radius: 12px;
             background-size: cover;
             background-position: center;
+            width: 100%;
+            padding-bottom: 100%; /* Creates a square */
+            background-color: #f5f5f5; /* Fallback color */
         }
         
-        .grid-image:nth-child(1),
-        .grid-image:nth-child(2),
+        /* Center the third image in the second row */
         .grid-image:nth-child(3) {
-            background-color: #f5f5f5; /* Placeholder for missing image */
+            grid-column: 1 / span 2; /* Span across both columns */
+            width: 60%; /* Make it smaller than full width */
+            padding-bottom: 60%; /* Keep aspect ratio */
+            margin: 0 auto; /* Center it horizontally */
+            justify-self: center; /* Additional centering for grid */
         }
         
         .plusy {
             font-weight: 700;
             text-align: center;
-            color: #7A9D8C;
+            color: var(--primary-color);
+            font-size: 2rem;
+            line-height: 1.2;
+            margin: 3rem auto 2rem;
         }
         
         .amenities {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem auto;
+            width: 100%;
+            max-width: 60rem;
         }
         
         .amenity {
             text-align: center;
+            flex: 1 1 calc(25% - 2rem);
+            min-width: 8rem;
+            max-width: 12rem;
+            margin-bottom: 1.5rem;
         }
         
         .amenity-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 16px;
+            width: 4rem;
+            height: 4rem;
+            margin: 0 auto 1rem;
+            background-color: var(--primary-color);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            background-color: #7A9D8C; /* Fallback color */
         }
         
-        /* Implementace SVG ikon přímo v kódu namísto PNG souborů */
+        /* Icon classes with updated naming format */
         .amenity-icon.forest {
-            width: 56px;
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 64'%3E%3Cpath d='M28 4L8 40h12v20h16V40h12L28 4z'/%3E%3C/svg%3E") no-repeat center / contain;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 64'%3E%3Cpath d='M28 4L8 40h12v20h16V40h12L28 4z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url('ikona-forest.png') no-repeat center / contain;
+            -webkit-mask: url('ikona-forest.png') no-repeat center / contain;
         }
         
         .amenity-icon.wellness {
-            width: 72px;
-            height: 56px;
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 56'%3E%3Cpath d='M36 6c-16.5 0-30 8.95-30 20 0 11.05 13.5 20 30 20s30-8.95 30-20c0-11.05-13.5-20-30-20zm0 34c-8.28 0-15-6.72-15-15 0-8.28 6.72-15 15-15s15 6.72 15 15c0 8.28-6.72 15-15 15z'/%3E%3C/svg%3E") no-repeat center / contain;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 56'%3E%3Cpath d='M36 6c-16.5 0-30 8.95-30 20 0 11.05 13.5 20 30 20s30-8.95 30-20c0-11.05-13.5-20-30-20zm0 34c-8.28 0-15-6.72-15-15 0-8.28 6.72-15 15-15s15 6.72 15 15c0 8.28-6.72 15-15 15z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url('ikona-wellness.png') no-repeat center / contain;
+            -webkit-mask: url('ikona-wellness.png') no-repeat center / contain;
         }
         
         .amenity-icon.doctor {
-            width: 56px;
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 64'%3E%3Cpath d='M28 0C19.16 0 12 7.16 12 16v4h-4v12h4v24c0 4.42 3.58 8 8 8h16c4.42 0 8-3.58 8-8V32h4V20h-4v-4c0-8.84-7.16-16-16-16zm0 12c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zm8 24h-16v-4h16v4z'/%3E%3C/svg%3E") no-repeat center / contain;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 64'%3E%3Cpath d='M28 0C19.16 0 12 7.16 12 16v4h-4v12h4v24c0 4.42 3.58 8 8 8h16c4.42 0 8-3.58 8-8V32h4V20h-4v-4c0-8.84-7.16-16-16-16zm0 12c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zm8 24h-16v-4h16v4z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url('ikona-doctor.png') no-repeat center / contain;
+            -webkit-mask: url('ikona-doctor.png') no-repeat center / contain;
         }
         
         .amenity-icon.transport {
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M52 8H12C5.37 8 0 13.37 0 20v24c0 4.42 3.58 8 8 8h4v4c0 4.42 3.58 8 8 8h24c4.42 0 8-3.58 8-8v-4h4c4.42 0 8-3.58 8-8V20c0-6.63-5.37-12-12-12zM12 28h40v8H12v-8zm8 24c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm24 0c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm8-24h-8v-8h8v8zm0-12H12V16h40v4z'/%3E%3C/svg%3E") no-repeat center / contain;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M52 8H12C5.37 8 0 13.37 0 20v24c0 4.42 3.58 8 8 8h4v4c0 4.42 3.58 8 8 8h24c4.42 0 8-3.58 8-8v-4h4c4.42 0 8-3.58 8-8V20c0-6.63-5.37-12-12-12zM12 28h40v8H12v-8zm8 24c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm24 0c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm8-24h-8v-8h8v8zm0-12H12V16h40v4z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url('ikona-transport.png') no-repeat center / contain;
+            -webkit-mask: url('ikona-transport.png') no-repeat center / contain;
         }
         
         .amenity-icon.gym {
-            width: 64px;
-            height: 44.8px;
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 45'%3E%3Cpath d='M58 14h-8V8c0-4.42-3.58-8-8-8H22c-4.42 0-8 3.58-8 8v6H6c-3.31 0-6 2.69-6 6v12c0 3.31 2.69 6 6 6h8v6c0 4.42 3.58 8 8 8h20c4.42 0 8-3.58 8-8v-6h8c3.31 0 6-2.69 6-6V20c0-3.31-2.69-6-6-6zm-44 0V8c0-2.21 1.79-4 4-4h20c2.21 0 4 1.79 4 4v20c0 2.21-1.79 4-4 4H18c-2.21 0-4-1.79-4-4V14z'/%3E%3C/svg%3E") no-repeat center / contain;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 45'%3E%3Cpath d='M58 14h-8V8c0-4.42-3.58-8-8-8H22c-4.42 0-8 3.58-8 8v6H6c-3.31 0-6 2.69-6 6v12c0 3.31 2.69 6 6 6h8v6c0 4.42 3.58 8 8 8h20c4.42 0 8-3.58 8-8v-6h8c3.31 0 6-2.69 6-6V20c0-3.31-2.69-6-6-6zm-44 0V8c0-2.21 1.79-4 4-4h20c2.21 0 4 1.79 4 4v20c0 2.21-1.79 4-4 4H18c-2.21 0-4-1.79-4-4V14z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url('ikona-gym.png') no-repeat center / contain;
+            -webkit-mask: url('ikona-gym.png') no-repeat center / contain;
         }
         
         .amenity-icon.washing {
-            width: 64px;
-            height: 56px;
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 56'%3E%3Cpath d='M56 0H8C3.58 0 0 3.58 0 8v40c0 4.42 3.58 8 8 8h48c4.42 0 8-3.58 8-8V8c0-4.42-3.58-8-8-8zm0 48H8V8h48v40zM32 12c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20zm0 32c-6.63 0-12-5.37-12-12s5.37-12 12-12 12 5.37 12 12-5.37 12-12 12z'/%3E%3C/svg%3E") no-repeat center / contain;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 56'%3E%3Cpath d='M56 0H8C3.58 0 0 3.58 0 8v40c0 4.42 3.58 8 8 8h48c4.42 0 8-3.58 8-8V8c0-4.42-3.58-8-8-8zm0 48H8V8h48v40zM32 12c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20zm0 32c-6.63 0-12-5.37-12-12s5.37-12 12-12 12 5.37 12 12-5.37 12-12 12z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url('ikona-washing.png') no-repeat center / contain;
+            -webkit-mask: url('ikona-washing.png') no-repeat center / contain;
         }
         
         .amenity-icon.kids {
-            width: 78px;
-            height: 64px;
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 78 64'%3E%3Cpath d='M39 0c-8.84 0-16 7.16-16 16 0 8.84 7.16 16 16 16s16-7.16 16-16c0-8.84-7.16-16-16-16zm-32 32C7.16 32 0 39.16 0 48s7.16 16 16 16h46c8.84 0 16-7.16 16-16s-7.16-16-16-16h-4.41C53.67 37.28 46.83 40 39 40s-14.67-2.72-18.59-8H16z'/%3E%3C/svg%3E") no-repeat center / contain;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 78 64'%3E%3Cpath d='M39 0c-8.84 0-16 7.16-16 16 0 8.84 7.16 16 16 16s16-7.16 16-16c0-8.84-7.16-16-16-16zm-32 32C7.16 32 0 39.16 0 48s7.16 16 16 16h46c8.84 0 16-7.16 16-16s-7.16-16-16-16h-4.41C53.67 37.28 46.83 40 39 40s-14.67-2.72-18.59-8H16z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url('ikona-kids.png') no-repeat center / contain;
+            -webkit-mask: url('ikona-kids.png') no-repeat center / contain;
         }
         
         .amenity-icon.bike {
-            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M48 16c-8.84 0-16 7.16-16 16 0 1.69.27 3.31.76 4.83L19.51 32l1.49-4h4v-4H16c-2.21 0-4 1.79-4 4v4h2.34l-2.55 6.81C4.77 38.69 0 43.45 0 48c0 4.55 3.73 8 8.28 8 3.55 0 6.64-2.29 7.72-5.59l8-20V32l13.91 6.26c2.4 4.92 7.45 8.74 13.09 8.74 8.84 0 16-7.16 16-16s-7.16-16-16-16zm-40 32c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm40 0c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E") no-repeat center / contain;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M48 16c-8.84 0-16 7.16-16 16 0 1.69.27 3.31.76 4.83L19.51 32l1.49-4h4v-4H16c-2.21 0-4 1.79-4 4v4h2.34l-2.55 6.81C4.77 38.69 0 43.45 0 48c0 4.55 3.73 8 8.28 8 3.55 0 6.64-2.29 7.72-5.59l8-20V32l13.91 6.26c2.4 4.92 7.45 8.74 13.09 8.74 8.84 0 16-7.16 16-16s-7.16-16-16-16zm-40 32c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm40 0c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url('ikona-bike.png') no-repeat center / contain;
+            -webkit-mask: url('ikona-bike.png') no-repeat center / contain;
         }
         
         .amenity-text {
             font-weight: 700;
-            font-size: 14px;
-            line-height: 20px;
+            font-size: 0.875rem;
+            line-height: 1.5;
             text-align: center;
-            color: #050706;
-            height: 42px;
+            color: var(--text-color);
+            height: 2.625rem;
         }
         
         .info-card {
-            margin: 30px auto;
-            border-radius: 10px;
+            margin: 2rem auto 4rem;
+            border-radius: 0.625rem;
             overflow: hidden;
-            box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0.25rem 2rem rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 70rem;
         }
         
         .card-image {
             width: 100%;
+            height: 18rem;
             background-size: cover;
             background-position: center;
-            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 65.62%, rgba(0, 0, 0, 0.4) 100%), url('/api/placeholder/288/283');
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 65.62%, rgba(0, 0, 0, 0.4) 100%), url('image2.jpg');
         }
         
         .card-content {
-            padding: 20px;
-            background: linear-gradient(42.46deg, #ABA8BF 0%, #F5E9F3 38.5%);
+            padding: 2.5rem;
+            background: linear-gradient(42.46deg, var(--card-gradient-start) 0%, var(--card-gradient-end) 38.5%);
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .card-text {
             font-weight: 400;
-            font-size: 14px;
-            line-height: 24px;
-            color: #050706;
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: var(--text-color);
+            margin: 0 auto;
+            max-width: 35rem;
         }
         
-        .info-image {
-            height: 177.43px;
-            margin: 30px auto;
-            border-radius: 10px;
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/api/placeholder/288/178');
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.15);
+        .info-section {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 70rem;
+            margin: 0 auto;
+            gap: 2rem;
+            position: relative;
         }
         
         .info-text {
-            margin: 30px auto;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 24px;
-            color: #050706;
+            flex: 1;
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--text-color);
+        }
+        
+        .info-image {
+            flex: 1.8;
+            min-height: 15rem;
+            border-radius: 0.625rem;
+            background-image: url('image4.jpg');
+            background-color: #f5f5f5; /* Fallback color */
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0.25rem 2rem rgba(0, 0, 0, 0.15);
+            min-width: 15rem;
+            position: relative;
+        }
+        
+        .info-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0.625rem;
+        }
+        
+        /* Media Queries */
+        @media (min-width: 48rem) { /* 768px */
+            .image-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: 1fr;
+                gap: 0.75rem;
+                padding: 0;
+            }
+            
+            .grid-image {
+                padding-bottom: 75%; /* Less square, more rectangular */
+            }
+            
+            .grid-image:nth-child(3) {
+                grid-column: auto;
+                width: 100%;
+                padding-bottom: 75%;
+                margin: 0;
+            }
+            
+            .info-card {
+                flex-direction: row;
+            }
+            
+            .card-image {
+                width: 48%;
+                height: auto;
+            }
+            
+            .card-content {
+                width: 52%;
+                padding: 3rem;
+            }
+            
+            .card-text {
+                font-size: 0.95rem;
+                max-width: 30rem;
+            }
+            
+            .info-section {
+                flex-direction: row;
+                align-items: stretch;
+            }
+            
+            .info-text {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .info-image {
+                height: auto;
+                min-height: 20rem;
+            }
+        }
+        
+        @media (min-width: 64rem) { /* 1024px */
+            .grid-image {
+                padding-bottom: 65%;
+            }
+            
+            .card-text {
+                font-size: 1rem;
+                max-width: 32rem;
+            }
+            
+            .card-content {
+                padding: 3.5rem;
+            }
+            
+            .info-text {
+                font-size: 1.125rem;
+            }
+        }
+        
+        @media (max-width: 29.9375rem) { /* Below 480px */
+            html {
+                font-size: 14px;
+            }
+            
+            .grid-image:nth-child(3) {
+                width: 80%;
+                padding-bottom: 80%;
+            }
+            
+            .amenity {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            
+            .card-content {
+                padding: 1.8rem 1.2rem;
+            }
+            
+            .card-text {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -402,14 +384,12 @@
         </div>
         
         <div class="info-card">
-            <div class="card-image" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 65.62%, rgba(0, 0, 0, 0.4) 100%), url('image2.jpg');"></div>
+            <div class="card-image"></div>
             <div class="card-content">
                 <div class="card-text">
-                    Vestibulum fermentum tortor id mi. Phasellus rhoncus. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Aliquam in lorem sit amet leo accumsan lacinia.
+                    <p>Vestibulum fermentum tortor id mi. Phasellus rhoncus. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Aliquam in lorem sit amet leo accumsan lacinia.</p>
 
-
-
-                    Aliquam erat volutpat. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci.
+                    <p>Aliquam erat volutpat. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci.</p>
                 </div>
             </div>
         </div>
@@ -418,10 +398,21 @@
             <div class="info-text">
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis viverra diam non justo. Donec quis nibh at felis congue commodo. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Praesent vitae arcu tempor neque lacinia pretium. Integer tempor. Nunc dapibus tortor vel mi dapibus sollicitudin.
 
-Nunc tincidunt ante vitae massa. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus. Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Fusce aliquam vestibulum ipsum. Nulla non lectus sed nisl molestie malesuada. Aliquam ante. Integer imperdiet lectus quis justo.
+                Nunc tincidunt ante vitae massa. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus. Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Fusce aliquam vestibulum ipsum. Nulla non lectus sed nisl molestie malesuada. Aliquam ante. Integer imperdiet lectus quis justo.
             </div>
-            <div class="info-image" style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('image4.jpg');"></div>
+            <div class="info-image"></div>
         </div>
     </div>
+    
+    <script>
+        // Set background images via JS to ensure they load properly
+        document.addEventListener("DOMContentLoaded", function() {
+            // Set card image
+            document.querySelector('.card-image').style.backgroundImage = "linear-gradient(180deg, rgba(0, 0, 0, 0) 65.62%, rgba(0, 0, 0, 0.4) 100%), url('image2.jpg')";
+            
+            // Set info image
+            document.querySelector('.info-image').style.backgroundImage = "linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('image4.jpg')";
+        });
+    </script>
 </body>
 </html>
