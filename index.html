@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #FFFFFF;
+            font-family: 'Roboto', sans-serif;
+            margin: 0 auto;
+        }
+        
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+        
+        /* Responzivní nastavení pro různé obrazovky */
+        @media (max-width: 767px) {
+            .container {
+                max-width: 390px;
+                min-height: 2569px;
+            }
+            
+            .image-grid {
+                margin: 54px 36px 0;
+            }
+            
+            .grid-image {
+                width: 150px;
+                height: 120px;
+            }
+            
+            .grid-image:nth-child(3) {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .plusy {
+                width: 288px;
+                height: 20px;
+                margin: 40px auto 0;
+                font-size: 28px;
+                line-height: 32px;
+            }
+            
+            .amenities {
+                padding: 0 51px;
+                margin-top: 30px;
+            }
+            
+            .amenity {
+                width: 136px;
+                margin-bottom: 40px;
+            }
+            
+            .info-card,
+            .info-image,
+            .info-text {
+                width: 288px;
+            }
+        }
+        
+        @media (min-width: 768px) and (max-width: 1439px) {
+            .container {
+                max-width: 960px;
+            }
+            
+            .image-grid {
+                margin: 60px auto 0;
+                max-width: 900px;
+            }
+            
+            .grid-image {
+                width: 280px;
+                height: 200px;
+            }
+            
+            .plusy {
+                width: auto;
+                margin: 60px auto 40px;
+                font-size: 32px;
+                line-height: 36px;
+            }
+            
+            .amenities {
+                padding: 0 100px;
+                margin-top: 40px;
+            }
+            
+            .amenity {
+                width: 170px;
+                margin-bottom: 50px;
+            }
+            
+            .info-card,
+            .info-image,
+            .info-text {
+                width: 700px;
+            }
+            
+            .card-image {
+                height: 400px;
+            }
+        }
+        
+        @media (min-width: 1440px) {
+            .container {
+                height: 2203px;
+            }
+            
+            .image-grid {
+                width: 1120px;
+                height: 280px;
+                margin: 76px auto 0;
+                justify-content: space-between;
+            }
+            
+            .grid-image {
+                width: 352px;
+                height: 280px;
+            }
+            
+            .plusy {
+                width: 90px;
+                height: 36px;
+                margin: 120px auto 40px;
+                font-size: 36px;
+                line-height: 36px;
+            }
+            
+            .amenities {
+                width: 937px;
+                margin: 60px auto 0;
+                padding: 0;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            
+            .amenity {
+                width: 166px;
+                margin-bottom: 60px;
+                flex: 0 0 calc(25% - 20px);
+            }
+            
+            .info-card {
+                width: 1121px;
+                height: 535px;
+                margin: 100px auto;
+                display: flex;
+            }
+            
+            .card-image {
+                width: 544px;
+                height: 535px;
+            }
+            
+            .card-content {
+                width: 577px;
+                padding: 40px;
+            }
+            
+            .card-text {
+                width: 384px;
+                margin: 30px auto;
+                font-size: 16px;
+                line-height: 28px;
+            }
+            
+            .info-section {
+                display: flex;
+                width: 1121px;
+                margin: 0 auto;
+            }
+            
+            .info-text {
+                width: 352px;
+                font-size: 16px;
+                line-height: 28px;
+                margin-right: 40px;
+            }
+            
+            .info-image {
+                width: 672px;
+                height: 414px;
+            }
+        }
+        
+        /* Společné styly */
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .grid-image {
+            border-radius: 10px;
+            margin-bottom: 12px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .grid-image:nth-child(1),
+        .grid-image:nth-child(2),
+        .grid-image:nth-child(3) {
+            background-color: #f5f5f5; /* Placeholder for missing image */
+        }
+        
+        .plusy {
+            font-weight: 700;
+            text-align: center;
+            color: #7A9D8C;
+        }
+        
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .amenity {
+            text-align: center;
+        }
+        
+        .amenity-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #7A9D8C; /* Fallback color */
+        }
+        
+        /* Implementace SVG ikon přímo v kódu namísto PNG souborů */
+        .amenity-icon.forest {
+            width: 56px;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 64'%3E%3Cpath d='M28 4L8 40h12v20h16V40h12L28 4z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 64'%3E%3Cpath d='M28 4L8 40h12v20h16V40h12L28 4z'/%3E%3C/svg%3E") no-repeat center / contain;
+        }
+        
+        .amenity-icon.wellness {
+            width: 72px;
+            height: 56px;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 56'%3E%3Cpath d='M36 6c-16.5 0-30 8.95-30 20 0 11.05 13.5 20 30 20s30-8.95 30-20c0-11.05-13.5-20-30-20zm0 34c-8.28 0-15-6.72-15-15 0-8.28 6.72-15 15-15s15 6.72 15 15c0 8.28-6.72 15-15 15z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 56'%3E%3Cpath d='M36 6c-16.5 0-30 8.95-30 20 0 11.05 13.5 20 30 20s30-8.95 30-20c0-11.05-13.5-20-30-20zm0 34c-8.28 0-15-6.72-15-15 0-8.28 6.72-15 15-15s15 6.72 15 15c0 8.28-6.72 15-15 15z'/%3E%3C/svg%3E") no-repeat center / contain;
+        }
+        
+        .amenity-icon.doctor {
+            width: 56px;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 64'%3E%3Cpath d='M28 0C19.16 0 12 7.16 12 16v4h-4v12h4v24c0 4.42 3.58 8 8 8h16c4.42 0 8-3.58 8-8V32h4V20h-4v-4c0-8.84-7.16-16-16-16zm0 12c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zm8 24h-16v-4h16v4z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 64'%3E%3Cpath d='M28 0C19.16 0 12 7.16 12 16v4h-4v12h4v24c0 4.42 3.58 8 8 8h16c4.42 0 8-3.58 8-8V32h4V20h-4v-4c0-8.84-7.16-16-16-16zm0 12c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zm8 24h-16v-4h16v4z'/%3E%3C/svg%3E") no-repeat center / contain;
+        }
+        
+        .amenity-icon.transport {
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M52 8H12C5.37 8 0 13.37 0 20v24c0 4.42 3.58 8 8 8h4v4c0 4.42 3.58 8 8 8h24c4.42 0 8-3.58 8-8v-4h4c4.42 0 8-3.58 8-8V20c0-6.63-5.37-12-12-12zM12 28h40v8H12v-8zm8 24c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm24 0c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm8-24h-8v-8h8v8zm0-12H12V16h40v4z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M52 8H12C5.37 8 0 13.37 0 20v24c0 4.42 3.58 8 8 8h4v4c0 4.42 3.58 8 8 8h24c4.42 0 8-3.58 8-8v-4h4c4.42 0 8-3.58 8-8V20c0-6.63-5.37-12-12-12zM12 28h40v8H12v-8zm8 24c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm24 0c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm8-24h-8v-8h8v8zm0-12H12V16h40v4z'/%3E%3C/svg%3E") no-repeat center / contain;
+        }
+        
+        .amenity-icon.gym {
+            width: 64px;
+            height: 44.8px;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 45'%3E%3Cpath d='M58 14h-8V8c0-4.42-3.58-8-8-8H22c-4.42 0-8 3.58-8 8v6H6c-3.31 0-6 2.69-6 6v12c0 3.31 2.69 6 6 6h8v6c0 4.42 3.58 8 8 8h20c4.42 0 8-3.58 8-8v-6h8c3.31 0 6-2.69 6-6V20c0-3.31-2.69-6-6-6zm-44 0V8c0-2.21 1.79-4 4-4h20c2.21 0 4 1.79 4 4v20c0 2.21-1.79 4-4 4H18c-2.21 0-4-1.79-4-4V14z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 45'%3E%3Cpath d='M58 14h-8V8c0-4.42-3.58-8-8-8H22c-4.42 0-8 3.58-8 8v6H6c-3.31 0-6 2.69-6 6v12c0 3.31 2.69 6 6 6h8v6c0 4.42 3.58 8 8 8h20c4.42 0 8-3.58 8-8v-6h8c3.31 0 6-2.69 6-6V20c0-3.31-2.69-6-6-6zm-44 0V8c0-2.21 1.79-4 4-4h20c2.21 0 4 1.79 4 4v20c0 2.21-1.79 4-4 4H18c-2.21 0-4-1.79-4-4V14z'/%3E%3C/svg%3E") no-repeat center / contain;
+        }
+        
+        .amenity-icon.washing {
+            width: 64px;
+            height: 56px;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 56'%3E%3Cpath d='M56 0H8C3.58 0 0 3.58 0 8v40c0 4.42 3.58 8 8 8h48c4.42 0 8-3.58 8-8V8c0-4.42-3.58-8-8-8zm0 48H8V8h48v40zM32 12c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20zm0 32c-6.63 0-12-5.37-12-12s5.37-12 12-12 12 5.37 12 12-5.37 12-12 12z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 56'%3E%3Cpath d='M56 0H8C3.58 0 0 3.58 0 8v40c0 4.42 3.58 8 8 8h48c4.42 0 8-3.58 8-8V8c0-4.42-3.58-8-8-8zm0 48H8V8h48v40zM32 12c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20zm0 32c-6.63 0-12-5.37-12-12s5.37-12 12-12 12 5.37 12 12-5.37 12-12 12z'/%3E%3C/svg%3E") no-repeat center / contain;
+        }
+        
+        .amenity-icon.kids {
+            width: 78px;
+            height: 64px;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 78 64'%3E%3Cpath d='M39 0c-8.84 0-16 7.16-16 16 0 8.84 7.16 16 16 16s16-7.16 16-16c0-8.84-7.16-16-16-16zm-32 32C7.16 32 0 39.16 0 48s7.16 16 16 16h46c8.84 0 16-7.16 16-16s-7.16-16-16-16h-4.41C53.67 37.28 46.83 40 39 40s-14.67-2.72-18.59-8H16z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 78 64'%3E%3Cpath d='M39 0c-8.84 0-16 7.16-16 16 0 8.84 7.16 16 16 16s16-7.16 16-16c0-8.84-7.16-16-16-16zm-32 32C7.16 32 0 39.16 0 48s7.16 16 16 16h46c8.84 0 16-7.16 16-16s-7.16-16-16-16h-4.41C53.67 37.28 46.83 40 39 40s-14.67-2.72-18.59-8H16z'/%3E%3C/svg%3E") no-repeat center / contain;
+        }
+        
+        .amenity-icon.bike {
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M48 16c-8.84 0-16 7.16-16 16 0 1.69.27 3.31.76 4.83L19.51 32l1.49-4h4v-4H16c-2.21 0-4 1.79-4 4v4h2.34l-2.55 6.81C4.77 38.69 0 43.45 0 48c0 4.55 3.73 8 8.28 8 3.55 0 6.64-2.29 7.72-5.59l8-20V32l13.91 6.26c2.4 4.92 7.45 8.74 13.09 8.74 8.84 0 16-7.16 16-16s-7.16-16-16-16zm-40 32c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm40 0c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M48 16c-8.84 0-16 7.16-16 16 0 1.69.27 3.31.76 4.83L19.51 32l1.49-4h4v-4H16c-2.21 0-4 1.79-4 4v4h2.34l-2.55 6.81C4.77 38.69 0 43.45 0 48c0 4.55 3.73 8 8.28 8 3.55 0 6.64-2.29 7.72-5.59l8-20V32l13.91 6.26c2.4 4.92 7.45 8.74 13.09 8.74 8.84 0 16-7.16 16-16s-7.16-16-16-16zm-40 32c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm40 0c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/%3E%3C/svg%3E") no-repeat center / contain;
+        }
+        
+        .amenity-text {
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            color: #050706;
+            height: 42px;
+        }
+        
+        .info-card {
+            margin: 30px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-image {
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 65.62%, rgba(0, 0, 0, 0.4) 100%), url('/api/placeholder/288/283');
+        }
+        
+        .card-content {
+            padding: 20px;
+            background: linear-gradient(42.46deg, #ABA8BF 0%, #F5E9F3 38.5%);
+        }
+        
+        .card-text {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 24px;
+            color: #050706;
+        }
+        
+        .info-image {
+            height: 177.43px;
+            margin: 30px auto;
+            border-radius: 10px;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/api/placeholder/288/178');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.15);
+        }
+        
+        .info-text {
+            margin: 30px auto;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 24px;
+            color: #050706;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-grid">
+            <div class="grid-image" style="background-image: url('image1.jpg');"></div>
+            <div class="grid-image" style="background-image: url('image2.jpg');"></div>
+            <div class="grid-image" style="background-image: url('image4.jpg');"></div>
+        </div>
+        
+        <div class="plusy">Plusy</div>
+        
+        <div class="amenities">
+            <div class="amenity">
+                <div class="amenity-icon forest"></div>
+                <div class="amenity-text">1 ha soukromého lesoparku</div>
+            </div>
+            
+            <div class="amenity">
+                <div class="amenity-icon wellness"></div>
+                <div class="amenity-text">Wellness s bazénem a saunou</div>
+            </div>
+            
+            <div class="amenity">
+                <div class="amenity-icon doctor"></div>
+                <div class="amenity-text">Místnost pro rodinného lékaře</div>
+            </div>
+            
+            <div class="amenity">
+                <div class="amenity-icon transport"></div>
+                <div class="amenity-text">Shuttle privátní doprava</div>
+            </div>
+            
+            <div class="amenity">
+                <div class="amenity-icon gym"></div>
+                <div class="amenity-text">Venkovní posilovna a tělocvična v interiéru</div>
+            </div>
+            
+            <div class="amenity">
+                <div class="amenity-icon washing"></div>
+                <div class="amenity-text">Umývárna kol a psů</div>
+            </div>
+            
+            <div class="amenity">
+                <div class="amenity-icon kids"></div>
+                <div class="amenity-text">Dětský klub</div>
+            </div>
+            
+            <div class="amenity">
+                <div class="amenity-icon bike"></div>
+                <div class="amenity-text">Přímé napojení na cyklostezku</div>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <div class="card-image" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 65.62%, rgba(0, 0, 0, 0.4) 100%), url('image2.jpg');"></div>
+            <div class="card-content">
+                <div class="card-text">
+                    Vestibulum fermentum tortor id mi. Phasellus rhoncus. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Aliquam in lorem sit amet leo accumsan lacinia.
+
+
+
+                    Aliquam erat volutpat. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci.
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <div class="info-text">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis viverra diam non justo. Donec quis nibh at felis congue commodo. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Praesent vitae arcu tempor neque lacinia pretium. Integer tempor. Nunc dapibus tortor vel mi dapibus sollicitudin.
+
+Nunc tincidunt ante vitae massa. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus. Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Fusce aliquam vestibulum ipsum. Nulla non lectus sed nisl molestie malesuada. Aliquam ante. Integer imperdiet lectus quis justo.
+            </div>
+            <div class="info-image" style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('image4.jpg');"></div>
+        </div>
+    </div>
+</body>
+</html>

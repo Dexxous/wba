@@ -1,0 +1,156 @@
+/* Reset styles */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0F0F0;
+    padding: 20px;
+}
+
+/* Container for the entire content */
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+    background: #f5ecec;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 1240px;
+    height: 110px;
+    padding: 31px, 16px, 31px, 16px;
+}
+
+header h1 {
+    font-size: 30px;
+    color: #333;
+    width: 328px;
+    height: 48px;
+    line-height: 48.41px;
+}
+
+/* Flexbox examples */
+.flexbox-examples .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-wrap: wrap;
+    border: 3px solid #000; /* Černé ohraničení */
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.bordered.no-gap {
+    gap: 0;
+}
+
+.bordered.spaced {
+    padding: 50px;
+}
+
+.item {
+    width: 200px; /* Pevná velikost čtverců */
+    height: 200px; /* Čtverec */
+    background-color: #FFC642; /* Tmavší oranžová */
+    color: #000; /* Černá barva textu */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid #000;
+    font-size: 24px;
+}
+
+.item-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+/* Zarovnání řádků */
+.top-align {
+    align-items: flex-start; 
+    justify-content: flex-start;
+    padding-bottom: 50px;
+    height: 309px;
+}
+
+.top-center {
+    align-items: flex-start; /* Položky nahoře */
+    justify-content: center;
+    padding-bottom: 50px;
+    height: 309px;
+}
+
+.middle-align {
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    height: 309px;
+}
+
+.bottom-center {
+    align-items: flex-end; /* Položky dole */
+    justify-content: center;
+    padding-top: 50px;
+    height: 309px;
+}
+
+/* Image and text section */
+.image-text {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    
+}
+
+.image img {
+    width: 100%;
+    max-width: 456px;
+    height: 708px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.text {
+    flex: 1;
+    background-color: #FFB300;
+    width: 752px;
+    height: 600px;
+    padding-top: 54px;
+    padding-right: 61px;
+    padding-bottom: 54px;
+    padding-left: 61px;
+    gap: 10px;
+    size: 18px;
+    line-height: 21.78px
+    
+
+}
+
+.text h2 {
+    font-size: 40px;
+    color: #000000; /* Tmavší oranžová */
+    margin-bottom: 10px;
+    line-height: 48.41px;
+   
+}
+
+.text p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+
+
